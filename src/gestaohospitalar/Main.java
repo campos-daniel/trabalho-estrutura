@@ -51,11 +51,11 @@ public class Main {
                 "Exames solicitados."
         );
 
-        System.out.println("\n--- Histórico de João ---");
+        System.out.println("\n--- Histórico do Paciente---");
         joao.getProntuario().exibirHistorico();
 
 
-        System.out.println("--- Busca de consulta ---");
+        System.out.println("--- Busca de Consulta ---");
 
         Consulta consultaEncontrada =
                 joao.getProntuario().buscarConsulta("20/02/2026");
@@ -65,7 +65,7 @@ public class Main {
                     + consultaEncontrada.getProntuario());
         }
 
-        System.out.println("\n--- Removendo consulta ---");
+        System.out.println("\n--- Removendo Consulta ---");
 
         boolean removida =
                 joao.getProntuario().removerConsulta("10/01/2026");
