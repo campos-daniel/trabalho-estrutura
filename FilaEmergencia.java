@@ -1,0 +1,73 @@
+public class FilaEmergencia {
+
+    private Paciente[] pacientes;
+    private int inicio;
+    private int fim;
+    private int quantidadePacientes;
+
+    public FilaEmergencia(int capacidade) {
+        this.pacientes = new Paciente[capacidade];
+        this.inicio = 0;
+        this.fim = 0;
+        this.quantidadePacientes = 0;
+    }
+
+    public void adicionarPaciente(Paciente paciente) {
+
+        if (quantidadePacientes == pacientes.length) {
+            throw new RuntimeException("Fila de emergência está cheia");
+        }
+
+        pacientes[fim] = paciente;
+
+        fim = (fim + 1) % pacientes.length;
+
+        quantidadePacientes++;
+    }
+
+    public Paciente chamarPaciente() {
+
+        if (quantidadePacientes == 0) {
+            throw new RuntimeException("Não há pacientes na fila");
+        }
+
+        Paciente paciente = pacientes[inicio];
+
+        pacientes[inicio] = null;
+
+        inicio = (inicio + 1) % pacientes.length;
+
+        quantidadePacientes--;
+
+        return paciente;
+    }
+
+    public void listarPacientes() {
+
+        if (quantidadePacientes == 0) {
+            System.out.println("Não há pacientes na fila de emergência.");
+            return;
+        }
+
+        for (int i = 0; i < quantidadePacientes; i++) {
+
+            int indice = (inicio + i) % pacientes.length;
+
+            System.out.println(
+                    pacientes[indice].getNome() + " está na fila de emergência"
+            );
+        }
+    }
+
+    public boolean estaVazia() {
+        return quantidadePacientes == 0;
+    }
+
+    public boolean estaCheia() {
+        return quantidadePacientes == pacientes.length;
+    }
+
+    public int tamanho() {
+        return quantidadePacientes;
+    }
+}
